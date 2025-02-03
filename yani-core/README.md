@@ -1,10 +1,10 @@
-# yani AI
-yani is a Rust library for building LLM-powered applications that focuses on ergonomics and modularity.
+# Oxide
+oxide is a Rust library for building LLM-powered applications that prioritizes speed and compute.
 
 More information about this crate can be found in the crate documentation
 ## Table of contents
 
-- [yani](#yani)
+- [oxide](#oxide)
   - [Table of contents](#table-of-contents)
   - [High-level features](#high-level-features)
   - [Installation](#installation)
@@ -18,12 +18,12 @@ More information about this crate can be found in the crate documentation
 
 ## Installation
 ```bash
-cargo add yani-core
+cargo add oxide-core
 ```
 
 ## Simple example:
 ```rust
-use yani::{completion::Prompt, providers::openai};
+use oxide::{completion::Prompt, providers::openai};
 
 #[tokio::main]
 async fn main() {
@@ -46,11 +46,11 @@ Note using `#[tokio::main]` requires you enable tokio's `macros` and `rt-multi-t
 or just `full` to enable all features (`cargo add tokio --features macros,rt-multi-thread`).
 
 ## Integrations
-yani supports the following LLM providers natively:
+oxide supports the following LLM providers natively:
 - OpenAI
 - Cohere
 - Google Gemini
 - xAI
 
-Additionally, yani currently has the following integration sub-libraries:
-- MongoDB vector store: `yani-mongodb`
+Additionally, oxide currently has the following integration sub-libraries:
+- MongoDB vector store: `oxide-mongodb`
