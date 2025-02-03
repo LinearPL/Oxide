@@ -5,7 +5,7 @@ edition = "2021"
 license = "MIT"
 readme = "README.md"
 description = "oxide vector store index integration for Qdrant. https://qdrant.tech"
-repository = "https://github.com/monami8484/oxide"
+repository = "https://github.com/LinearPL/Oxide"
 
 [dependencies]
 oxide-core = { path = "../oxide-core", version = "0.6.1" }

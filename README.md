@@ -68,11 +68,11 @@ You can find more examples each crate's `examples` (ie. [`oxide-core/examples`](
 
 
 Vector stores are available as separate companion-crates:
-- MongoDB vector store: [`oxide-mongodb`](https://github.com/monami8484/oxide/tree/main/oxide-mongodb)
-- LanceDB vector store: [`oxide-lancedb`](https://github.com/monami8484/oxide/tree/main/oxide-lancedb)
-- Neo4j vector store: [`oxide-neo4j`](https://github.com/monami8484/oxide/tree/main/oxide-neo4j)
-- Qdrant vector store: [`oxide-qdrant`](https://github.com/monami8484/oxide/tree/main/oxide-qdrant)
-- SQLite vector store: [`oxide-sqlite`](https://github.com/monami8484/oxide/tree/main/oxide-sqlite)
+- MongoDB vector store: [`oxide-mongodb`](https://github.com/LinearPL/Oxide/tree/main/oxide-mongodb)
+- LanceDB vector store: [`oxide-lancedb`](https://github.com/LinearPL/Oxide/tree/main/oxide-lancedb)
+- Neo4j vector store: [`oxide-neo4j`](https://github.com/LinearPL/Oxide/tree/main/oxide-neo4j)
+- Qdrant vector store: [`oxide-qdrant`](https://github.com/LinearPL/Oxide/tree/main/oxide-qdrant)
+- SQLite vector store: [`oxide-sqlite`](https://github.com/LinearPL/Oxide/tree/main/oxide-sqlite)
 
 
 <p align="center">

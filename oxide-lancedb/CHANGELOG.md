@@ -7,35 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.2](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.2.1...oxide-lancedb-v0.2.2) - 2025-01-13
+## [0.2.2](https://github.com/LinearPL/Oxide/compare/oxide-lancedb-v0.2.1...oxide-lancedb-v0.2.2) - 2025-01-13
 
 ### Other
 
 - Mock provider API in vector store integration tests (#186)
 
-## [0.2.1](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.2.0...oxide-lancedb-v0.2.1) - 2024-12-19
+## [0.2.1](https://github.com/LinearPL/Oxide/compare/oxide-lancedb-v0.2.0...oxide-lancedb-v0.2.1) - 2024-12-19
 
 ### Other
 
 - *(integration-tests)* LanceDB (#136)
 
-## [0.2.0](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.1.2...oxide-lancedb-v0.2.0) - 2024-12-03
+## [0.2.0](https://github.com/LinearPL/Oxide/compare/oxide-lancedb-v0.1.2...oxide-lancedb-v0.2.0) - 2024-12-03
 
 ### Added
 
-- embeddings API overhaul ([#120](https://github.com/monami8484/oxide/pull/120))
+- embeddings API overhaul ([#120](https://github.com/LinearPL/Oxide/pull/120))
 
 ### Fixed
 
-- *(oxide-lancedb)* rag embedding filtering ([#104](https://github.com/monami8484/oxide/pull/104))
+- *(oxide-lancedb)* rag embedding filtering ([#104](https://github.com/LinearPL/Oxide/pull/104))
 
-## [0.1.2](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.1.1...oxide-lancedb-v0.1.2) - 2024-11-13
+## [0.1.2](https://github.com/LinearPL/Oxide/compare/oxide-lancedb-v0.1.1...oxide-lancedb-v0.1.2) - 2024-11-13
 
 ### Other
 
 - update Cargo.lock dependencies
 
-## [0.1.1](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.1.0...oxide-lancedb-v0.1.1) - 2024-11-07
+## [0.1.1](https://github.com/LinearPL/Oxide/compare/oxide-lancedb-v0.1.0...oxide-lancedb-v0.1.1) - 2024-11-07
 
 ### Fixed
 
@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add coloured logos for integrations
 - *(readme)* test new logo coloration
 
-## [0.1.0](https://github.com/monami8484/oxide/releases/tag/oxide-lancedb-v0.1.0) - 2024-10-24
+## [0.1.0](https://github.com/LinearPL/Oxide/releases/tag/oxide-lancedb-v0.1.0) - 2024-10-24
 
 ### Added
 

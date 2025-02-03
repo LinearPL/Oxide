@@ -30,7 +30,7 @@ If you are unsure whether a side-crate should live in the main repo, you can spi
 This should be similar to most rust projects.
 
 ```bash
-git clone https://github.com/monami8484/oxide
+git clone https://github.com/LinearPL/Oxide
 cd oxide
 cargo test
 ```

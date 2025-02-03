@@ -3,7 +3,7 @@
 //! This crate is a companion crate to the [oxide-core crate](https://github.com/oxide-ai/oxide-core).
 //! It provides a vector store implementation that uses Neo4j as the underlying datastore.
 //!
-//! See the [README](https://github.com/monami8484/oxide/tree/main/oxide-neo4j) for more information.
+//! See the [README](https://github.com/LinearPL/Oxide/tree/main/oxide-neo4j) for more information.
 //!
 //! ## Prerequisites
 //!
@@ -38,7 +38,7 @@
 //! ```
 //!
 //! ## Simple example:
-//! More examples can be found in the [/examples](https://github.com/monami8484/oxide/tree/main/oxide-neo4j/examples) folder.
+//! More examples can be found in the [/examples](https://github.com/LinearPL/Oxide/tree/main/oxide-neo4j/examples) folder.
 //! ```
 //! use oxide_neo4j::{vector_index::*, Neo4jClient};
 //! use neo4rs::ConfigBuilder;
