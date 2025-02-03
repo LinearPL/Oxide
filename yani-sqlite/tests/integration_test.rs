@@ -1,12 +1,12 @@
 use serde_json::json;
 
-use yani::vector_store::VectorStoreIndex;
-use yani::{
+use oxide::vector_store::VectorStoreIndex;
+use oxide::{
     embeddings::{Embedding, EmbeddingsBuilder},
     providers::openai,
     Embed, OneOrMany,
 };
-use yani_sqlite::{Column, ColumnValue, SqliteVectorStore, SqliteVectorStoreTable};
+use oxide_sqlite::{Column, ColumnValue, SqliteVectorStore, SqliteVectorStoreTable};
 use rusqlite::ffi::sqlite3_auto_extension;
 use sqlite_vec::sqlite3_vec_init;
 use tokio_rusqlite::Connection;
@@ -43,10 +43,10 @@ impl SqliteVectorStoreTable for Word {
 }
 
 #[tokio::test]
-async fn vector_seyanih_test() {
+async fn vector_seoxideh_test() {
     // Initialize the `sqlite-vec`extension
     // This enables SQLite to work with vector embeddings
-    // See: https://alexgyaniia.xyz/sqlite-vec/rust.html
+    // See: https://alexgoxideia.xyz/sqlite-vec/rust.html
     unsafe {
         sqlite3_auto_extension(Some(std::mem::transmute(sqlite3_vec_init as *const ())));
     }

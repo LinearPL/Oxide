@@ -1,6 +1,6 @@
 mod deserializer;
 
-use std::sync::yani;
+use std::sync::oxide;
 
 use deserializer::RecordBatchDeserializer;
 use futures::TryStreamExt;
@@ -8,9 +8,9 @@ use lancedb::{
     arrow::arrow_schema::{DataType, Schema},
     query::ExecutableQuery,
 };
-use yani::vector_store::VectorStoreError;
+use oxide::vector_store::VectorStoreError;
 
-use crate::lancedb_to_yani_error;
+use crate::lancedb_to_oxide_error;
 
 /// Trait that facilitates the conversion of columnar data returned by a lanceDb query to serde_json::Value.
 /// Used whenever a lanceDb table is queried.
@@ -23,10 +23,10 @@ impl QueryToJson for lancedb::query::VectorQuery {
         let record_batches = self
             .execute()
             .await
-            .map_err(lancedb_to_yani_error)?
+            .map_err(lancedb_to_oxide_error)?
             .try_collect::<Vec<_>>()
             .await
-            .map_err(lancedb_to_yani_error)?;
+            .map_err(lancedb_to_oxide_error)?;
 
         record_batches.deserialize()
     }
@@ -37,7 +37,7 @@ pub(crate) trait FilterTableColumns {
     fn filter_embeddings(self) -> Vec<String>;
 }
 
-impl FilterTableColumns for yani<Schema> {
+impl FilterTableColumns for oxide<Schema> {
     fn filter_embeddings(self) -> Vec<String> {
         self.fields()
             .iter()
@@ -54,7 +54,7 @@ impl FilterTableColumns for yani<Schema> {
 
 #[cfg(test)]
 mod tests {
-    use std::sync::yani;
+    use std::sync::oxide;
 
     use lancedb::arrow::arrow_schema::{DataType, Field, Schema};
 
@@ -66,18 +66,18 @@ mod tests {
         let field_b = Field::new("my_bool", DataType::Boolean, false);
         let field_c = Field::new(
             "my_embeddings",
-            DataType::FixedSizeList(yani::new(Field::new("item", DataType::Float64, true)), 10),
+            DataType::FixedSizeList(oxide::new(Field::new("item", DataType::Float64, true)), 10),
             false,
         );
         let field_d = Field::new(
             "my_list",
-            DataType::FixedSizeList(yani::new(Field::new("item", DataType::Float32, true)), 10),
+            DataType::FixedSizeList(oxide::new(Field::new("item", DataType::Float32, true)), 10),
             false,
         );
 
         let schema = Schema::new(vec![field_a, field_b, field_c, field_d]);
 
-        let columns = yani::new(schema).filter_embeddings();
+        let columns = oxide::new(schema).filter_embeddings();
 
         assert_eq!(
             columns,
@@ -95,18 +95,18 @@ mod tests {
         let field_b = Field::new("my_bool", DataType::Boolean, false);
         let field_c = Field::new(
             "my_embeddings",
-            DataType::FixedSizeList(yani::new(Field::new("item", DataType::Float64, true)), 10),
+            DataType::FixedSizeList(oxide::new(Field::new("item", DataType::Float64, true)), 10),
             false,
         );
         let field_d = Field::new(
             "my_other_embeddings",
-            DataType::FixedSizeList(yani::new(Field::new("item", DataType::Float64, true)), 10),
+            DataType::FixedSizeList(oxide::new(Field::new("item", DataType::Float64, true)), 10),
             false,
         );
 
         let schema = Schema::new(vec![field_a, field_b, field_c, field_d]);
 
-        let columns = yani::new(schema).filter_embeddings();
+        let columns = oxide::new(schema).filter_embeddings();
 
         assert_eq!(columns, vec!["id".to_string(), "my_bool".to_string()])
     }

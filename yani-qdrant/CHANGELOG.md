@@ -7,31 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.5](https://github.com/monami8484/yani/compare/yani-qdrant-v0.1.4...yani-qdrant-v0.1.5) - 2025-01-13
+## [0.1.5](https://github.com/monami8484/oxide/compare/oxide-qdrant-v0.1.4...oxide-qdrant-v0.1.5) - 2025-01-13
 
 ### Other
 
 - Mock provider API in vector store integration tests (#186)
 
-## [0.1.4](https://github.com/monami8484/yani/compare/yani-qdrant-v0.1.3...yani-qdrant-v0.1.4) - 2024-12-19
+## [0.1.4](https://github.com/monami8484/oxide/compare/oxide-qdrant-v0.1.3...oxide-qdrant-v0.1.4) - 2024-12-19
 
 ### Other
 
 - update Cargo.lock dependencies
 
-## [0.1.3](https://github.com/monami8484/yani/compare/yani-qdrant-v0.1.2...yani-qdrant-v0.1.3) - 2024-12-03
+## [0.1.3](https://github.com/monami8484/oxide/compare/oxide-qdrant-v0.1.2...oxide-qdrant-v0.1.3) - 2024-12-03
 
 ### Added
 
-- embeddings API overhaul ([#120](https://github.com/monami8484/yani/pull/120))
+- embeddings API overhaul ([#120](https://github.com/monami8484/oxide/pull/120))
 
 ### Other
 
-- *(integration test)* Neo4J ([#133](https://github.com/monami8484/yani/pull/133))
-- *(integration test)* Qdrant ([#134](https://github.com/monami8484/yani/pull/134))
+- *(integration test)* Neo4J ([#133](https://github.com/monami8484/oxide/pull/133))
+- *(integration test)* Qdrant ([#134](https://github.com/monami8484/oxide/pull/134))
 
-## [0.1.2](https://github.com/monami8484/yani/compare/yani-qdrant-v0.1.1...yani-qdrant-v0.1.2) - 2024-11-13
+## [0.1.2](https://github.com/monami8484/oxide/compare/oxide-qdrant-v0.1.1...oxide-qdrant-v0.1.2) - 2024-11-13
 
 ### Other
 
-- updated the following local packages: yani-core
+- updated the following local packages: oxide-core

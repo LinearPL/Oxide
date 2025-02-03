@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.2](https://github.com/monami8484/yani/compare/yani-mongodb-v0.2.1...yani-mongodb-v0.2.2) - 2025-01-13
+## [0.2.2](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.2.1...oxide-mongodb-v0.2.2) - 2025-01-13
 
 ### Other
 
 - Mock provider API in vector store integration tests (#186)
 
-## [0.2.1](https://github.com/monami8484/yani/compare/yani-mongodb-v0.2.0...yani-mongodb-v0.2.1) - 2024-12-19
+## [0.2.1](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.2.0...oxide-mongodb-v0.2.1) - 2024-12-19
 
 ### Added
 
@@ -21,30 +21,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Other
 
-- *(yani-mongodb)* fix mongodb flaky integration test (#154)
-- *(yani-mongodb)* fix flaky test (#153)
+- *(oxide-mongodb)* fix mongodb flaky integration test (#154)
+- *(oxide-mongodb)* fix flaky test (#153)
 
-## [0.2.0](https://github.com/monami8484/yani/compare/yani-mongodb-v0.1.5...yani-mongodb-v0.2.0) - 2024-12-03
+## [0.2.0](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.1.5...oxide-mongodb-v0.2.0) - 2024-12-03
 
 ### Added
 
-- embeddings API overhaul ([#120](https://github.com/monami8484/yani/pull/120))
+- embeddings API overhaul ([#120](https://github.com/monami8484/oxide/pull/120))
 
 ### Fixed
 
-- *(yani-mongodb)* remove embeddings from `top_n` lookup ([#115](https://github.com/monami8484/yani/pull/115))
+- *(oxide-mongodb)* remove embeddings from `top_n` lookup ([#115](https://github.com/monami8484/oxide/pull/115))
 
 ### Other
 
-- *(integration test)* MongoDB ([#126](https://github.com/monami8484/yani/pull/126))
+- *(integration test)* MongoDB ([#126](https://github.com/monami8484/oxide/pull/126))
 
-## [0.1.5](https://github.com/monami8484/yani/compare/yani-mongodb-v0.1.4...yani-mongodb-v0.1.5) - 2024-11-13
+## [0.1.5](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.1.4...oxide-mongodb-v0.1.5) - 2024-11-13
 
 ### Other
 
-- updated the following local packages: yani-core
+- updated the following local packages: oxide-core
 
-## [0.1.4](https://github.com/monami8484/yani/compare/yani-mongodb-v0.1.3...yani-mongodb-v0.1.4) - 2024-11-07
+## [0.1.4](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.1.3...oxide-mongodb-v0.1.4) - 2024-11-07
 
 ### Added
 
@@ -60,30 +60,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - update deps version
 - add coloured logos for integrations
 
-## [0.1.3](https://github.com/monami8484/yani/compare/yani-mongodb-v0.1.2...yani-mongodb-v0.1.3) - 2024-10-24
+## [0.1.3](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.1.2...oxide-mongodb-v0.1.3) - 2024-10-24
 
 ### Fixed
 
 - make PR changes pt I
-- mongodb vector seyanih - use num_candidates from seyanih params
+- mongodb vector seoxideh - use num_candidates from seoxideh params
 
 ### Other
 
 - Merge branch 'main' into feat(vector-store)/lancedb
 
-## [0.1.2](https://github.com/monami8484/yani/compare/yani-mongodb-v0.1.1...yani-mongodb-v0.1.2) - 2024-10-01
+## [0.1.2](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.1.1...oxide-mongodb-v0.1.2) - 2024-10-01
 
 ### Other
 
-- updated the following local packages: yani-core
+- updated the following local packages: oxide-core
 
-## [0.1.1](https://github.com/monami8484/yani/compare/yani-mongodb-v0.1.0...yani-mongodb-v0.1.1) - 2024-10-01
+## [0.1.1](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.1.0...oxide-mongodb-v0.1.1) - 2024-10-01
 
 ### Other
 
-- updated the following local packages: yani-core
+- updated the following local packages: oxide-core
 
-## [0.1.0](https://github.com/monami8484/yani/compare/yani-mongodb-v0.0.7...yani-mongodb-v0.1.0) - 2024-09-16
+## [0.1.0](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.0.7...oxide-mongodb-v0.1.0) - 2024-09-16
 
 ### Other
 

@@ -1,15 +1,15 @@
 [package]
-name = "yani-lancedb"
+name = "oxide-lancedb"
 version = "0.2.2"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
-description = "yani vector store index integration for LanceDB."
-repository = "https://github.com/monami8484/yani"
+description = "oxide vector store index integration for LanceDB."
+repository = "https://github.com/monami8484/oxide"
 
 [dependencies]
 lancedb = "0.10.0"
-yani-core = { path = "../yani-core", version = "0.6.1" }
+oxide-core = { path = "../oxide-core", version = "0.6.1" }
 arrow-array = "52.2.0"
 serde_json = "1.0.128"
 serde = "1.0.210"
@@ -21,17 +21,17 @@ anyhow = "1.0.89"
 httpmock = "0.7.0"
 
 [[example]]
-name = "vector_seyanih_local_ann"
-required-features = ["yani-core/derive"]
+name = "vector_seoxideh_local_ann"
+required-features = ["oxide-core/derive"]
 
 [[example]]
-name = "vector_seyanih_local_enn"
-required-features = ["yani-core/derive"]
+name = "vector_seoxideh_local_enn"
+required-features = ["oxide-core/derive"]
 
 [[example]]
-name = "vector_seyanih_s3_ann"
-required-features = ["yani-core/derive"]
+name = "vector_seoxideh_s3_ann"
+required-features = ["oxide-core/derive"]
 
 [[test]]
 name = "integration_tests"
-required-features = ["yani-core/derive"]
+required-features = ["oxide-core/derive"]

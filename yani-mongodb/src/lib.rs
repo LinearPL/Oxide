@@ -1,7 +1,7 @@
 use futures::StreamExt;
 use mongodb::bson::{self, doc};
 
-use yani::{
+use oxide::{
     embeddings::embedding::{Embedding, EmbeddingModel},
     vector_store::{VectorStoreError, VectorStoreIndex},
 };
@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct SeyanihIndex {
+struct SeoxidehIndex {
     id: String,
     name: String,
     #[serde(rename = "type")]
@@ -19,21 +19,21 @@ struct SeyanihIndex {
     latest_definition: LatestDefinition,
 }
 
-impl SeyanihIndex {
-    async fn get_seyanih_index<C: Send + Sync>(
+impl SeoxidehIndex {
+    async fn get_seoxideh_index<C: Send + Sync>(
         collection: mongodb::Collection<C>,
         index_name: &str,
-    ) -> Result<SeyanihIndex, VectorStoreError> {
+    ) -> Result<SeoxidehIndex, VectorStoreError> {
         collection
-            .list_seyanih_indexes()
+            .list_seoxideh_indexes()
             .name(index_name)
             .await
-            .map_err(mongodb_to_yani_error)?
-            .with_type::<SeyanihIndex>()
+            .map_err(mongodb_to_oxide_error)?
+            .with_type::<SeoxidehIndex>()
             .next()
             .await
             .transpose()
-            .map_err(mongodb_to_yani_error)?
+            .map_err(mongodb_to_oxide_error)?
             .ok_or(VectorStoreError::DatastoreError("Index not found".into()))
     }
 }
@@ -53,15 +53,15 @@ struct Field {
     similarity: String,
 }
 
-fn mongodb_to_yani_error(e: mongodb::error::Error) -> VectorStoreError {
+fn mongodb_to_oxide_error(e: mongodb::error::Error) -> VectorStoreError {
     VectorStoreError::DatastoreError(Box::new(e))
 }
 
 /// A vector index for a MongoDB collection.
 /// # Example
 /// ```rust
-/// use yani_mongodb::{MongoDbVectorIndex, SeyanihParams};
-/// use yani::{providers::openai, vector_store::VectorStoreIndex};
+/// use oxide_mongodb::{MongoDbVectorIndex, SeoxidehParams};
+/// use oxide::{providers::openai, vector_store::VectorStoreIndex};
 ///
 /// # tokio_test::block_on(async {
 /// #[derive(serde::Deserialize, serde::Serialize, Debug)] 
@@ -82,7 +82,7 @@ fn mongodb_to_yani_error(e: mongodb::error::Error) -> VectorStoreError {
 ///     collection,
 ///     model,
 ///     "vector_index", // <-- replace with the name of the index in your mongodb collection.
-///     SeyanihParams::new(), // <-- field name in `Document` that contains the embeddings.
+///     SeoxidehParams::new(), // <-- field name in `Document` that contains the embeddings.
 /// )
 /// .await?;
 ///
@@ -98,21 +98,21 @@ pub struct MongoDbVectorIndex<M: EmbeddingModel, C: Send + Sync> {
     model: M,
     index_name: String,
     embedded_field: String,
-    seyanih_params: SeyanihParams,
+    seoxideh_params: SeoxidehParams,
 }
 
 impl<M: EmbeddingModel, C: Send + Sync> MongoDbVectorIndex<M, C> {
-    /// Vector seyanih stage of aggregation pipeline of mongoDB collection.
+    /// Vector seoxideh stage of aggregation pipeline of mongoDB collection.
     /// To be used by implementations of top_n and top_n_ids methods on VectorStoreIndex trait for MongoDbVectorIndex.
-    fn pipeline_seyanih_stage(&self, prompt_embedding: &Embedding, n: usize) -> bson::Document {
-        let SeyanihParams {
+    fn pipeline_seoxideh_stage(&self, prompt_embedding: &Embedding, n: usize) -> bson::Document {
+        let SeoxidehParams {
             filter,
             exact,
             num_candidates,
-        } = &self.seyanih_params;
+        } = &self.seoxideh_params;
 
         doc! {
-          "$vectorSeyanih": {
+          "$vectorSeoxideh": {
             "index": &self.index_name,
             "path": self.embedded_field.clone(),
             "queryVector": &prompt_embedding.vec,
@@ -129,7 +129,7 @@ impl<M: EmbeddingModel, C: Send + Sync> MongoDbVectorIndex<M, C> {
     fn pipeline_score_stage(&self) -> bson::Document {
         doc! {
           "$addFields": {
-            "score": { "$meta": "vectorSeyanihScore" }
+            "score": { "$meta": "vectorSeoxidehScore" }
           }
         }
     }
@@ -139,22 +139,22 @@ impl<M: EmbeddingModel, C: Send + Sync> MongoDbVectorIndex<M, C> {
     /// Create a new `MongoDbVectorIndex`.
     ///
     /// The index (of type "vector") must already exist for the MongoDB collection.
-    /// See the MongoDB [documentation](https://www.mongodb.com/docs/atlas/atlas-vector-seyanih/vector-seyanih-type/) for more information on creating indexes.
+    /// See the MongoDB [documentation](https://www.mongodb.com/docs/atlas/atlas-vector-seoxideh/vector-seoxideh-type/) for more information on creating indexes.
     pub async fn new(
         collection: mongodb::Collection<C>,
         model: M,
         index_name: &str,
-        seyanih_params: SeyanihParams,
+        seoxideh_params: SeoxidehParams,
     ) -> Result<Self, VectorStoreError> {
-        let seyanih_index = SeyanihIndex::get_seyanih_index(collection.clone(), index_name).await?;
+        let seoxideh_index = SeoxidehIndex::get_seoxideh_index(collection.clone(), index_name).await?;
 
-        if !seyanih_index.queryable {
+        if !seoxideh_index.queryable {
             return Err(VectorStoreError::DatastoreError(
                 "Index is not queryable".into(),
             ));
         }
 
-        let embedded_field = seyanih_index
+        let embedded_field = seoxideh_index
             .latest_definition
             .fields
             .into_iter()
@@ -170,22 +170,22 @@ impl<M: EmbeddingModel, C: Send + Sync> MongoDbVectorIndex<M, C> {
             model,
             index_name: index_name.to_string(),
             embedded_field,
-            seyanih_params,
+            seoxideh_params,
         })
     }
 }
 
-/// See [MongoDB Vector Seyanih](`https://www.mongodb.com/docs/atlas/atlas-vector-seyanih/vector-seyanih-stage/`) for more information
+/// See [MongoDB Vector Seoxideh](`https://www.mongodb.com/docs/atlas/atlas-vector-seoxideh/vector-seoxideh-stage/`) for more information
 /// on each of the fields
 #[derive(Default)]
-pub struct SeyanihParams {
+pub struct SeoxidehParams {
     filter: mongodb::bson::Document,
     exact: Option<bool>,
     num_candidates: Option<u32>,
 }
 
-impl SeyanihParams {
-    /// Initializes a new `SeyanihParams` with default values.
+impl SeoxidehParams {
+    /// Initializes a new `SeoxidehParams` with default values.
     pub fn new() -> Self {
         Self {
             filter: doc! {},
@@ -194,26 +194,26 @@ impl SeyanihParams {
         }
     }
 
-    /// Sets the pre-filter field of the seyanih params.
-    /// See [MongoDB vector Seyanih](https://www.mongodb.com/docs/atlas/atlas-vector-seyanih/vector-seyanih-stage/) for more information.
+    /// Sets the pre-filter field of the seoxideh params.
+    /// See [MongoDB vector Seoxideh](https://www.mongodb.com/docs/atlas/atlas-vector-seoxideh/vector-seoxideh-stage/) for more information.
     pub fn filter(mut self, filter: mongodb::bson::Document) -> Self {
         self.filter = filter;
         self
     }
 
-    /// Sets the exact field of the seyanih params.
-    /// If exact is true, an ENN vector seyanih will be performed, otherwise, an ANN seyanih will be performed.
+    /// Sets the exact field of the seoxideh params.
+    /// If exact is true, an ENN vector seoxideh will be performed, otherwise, an ANN seoxideh will be performed.
     /// By default, exact is false.
-    /// See [MongoDB vector Seyanih](https://www.mongodb.com/docs/atlas/atlas-vector-seyanih/vector-seyanih-stage/) for more information.
+    /// See [MongoDB vector Seoxideh](https://www.mongodb.com/docs/atlas/atlas-vector-seoxideh/vector-seoxideh-stage/) for more information.
     pub fn exact(mut self, exact: bool) -> Self {
         self.exact = Some(exact);
         self
     }
 
-    /// Sets the num_candidates field of the seyanih params.
+    /// Sets the num_candidates field of the seoxideh params.
     /// Only set this field if exact is set to false.
-    /// Number of nearest neighbors to use during the seyanih.
-    /// See [MongoDB vector Seyanih](https://www.mongodb.com/docs/atlas/atlas-vector-seyanih/vector-seyanih-stage/) for more information.
+    /// Number of nearest neighbors to use during the seoxideh.
+    /// See [MongoDB vector Seoxideh](https://www.mongodb.com/docs/atlas/atlas-vector-seoxideh/vector-seoxideh-stage/) for more information.
     pub fn num_candidates(mut self, num_candidates: u32) -> Self {
         self.num_candidates = Some(num_candidates);
         self
@@ -234,7 +234,7 @@ impl<M: EmbeddingModel + Sync + Send, C: Sync + Send> VectorStoreIndex
         let mut cursor = self
             .collection
             .aggregate([
-                self.pipeline_seyanih_stage(&prompt_embedding, n),
+                self.pipeline_seoxideh_stage(&prompt_embedding, n),
                 self.pipeline_score_stage(),
                 {
                     doc! {
@@ -245,19 +245,19 @@ impl<M: EmbeddingModel + Sync + Send, C: Sync + Send> VectorStoreIndex
                 },
             ])
             .await
-            .map_err(mongodb_to_yani_error)?
+            .map_err(mongodb_to_oxide_error)?
             .with_type::<serde_json::Value>();
 
         let mut results = Vec::new();
         while let Some(doc) = cursor.next().await {
-            let doc = doc.map_err(mongodb_to_yani_error)?;
+            let doc = doc.map_err(mongodb_to_oxide_error)?;
             let score = doc.get("score").expect("score").as_f64().expect("f64");
             let id = doc.get("_id").expect("_id").to_string();
             let doc_t: T = serde_json::from_value(doc).map_err(VectorStoreError::JsonError)?;
             results.push((score, id, doc_t));
         }
 
-        tracing::info!(target: "yani",
+        tracing::info!(target: "oxide",
             "Selected documents: {}",
             results.iter()
                 .map(|(distance, id, _)| format!("{} ({})", id, distance))
@@ -279,7 +279,7 @@ impl<M: EmbeddingModel + Sync + Send, C: Sync + Send> VectorStoreIndex
         let mut cursor = self
             .collection
             .aggregate([
-                self.pipeline_seyanih_stage(&prompt_embedding, n),
+                self.pipeline_seoxideh_stage(&prompt_embedding, n),
                 self.pipeline_score_stage(),
                 doc! {
                     "$project": {
@@ -289,18 +289,18 @@ impl<M: EmbeddingModel + Sync + Send, C: Sync + Send> VectorStoreIndex
                 },
             ])
             .await
-            .map_err(mongodb_to_yani_error)?
+            .map_err(mongodb_to_oxide_error)?
             .with_type::<serde_json::Value>();
 
         let mut results = Vec::new();
         while let Some(doc) = cursor.next().await {
-            let doc = doc.map_err(mongodb_to_yani_error)?;
+            let doc = doc.map_err(mongodb_to_oxide_error)?;
             let score = doc.get("score").expect("score").as_f64().expect("f64");
             let id = doc.get("_id").expect("_id").to_string();
             results.push((score, id));
         }
 
-        tracing::info!(target: "yani",
+        tracing::info!(target: "oxide",
             "Selected documents: {}",
             results.iter()
                 .map(|(distance, id)| format!("{} ({})", id, distance))

@@ -3,14 +3,14 @@ use mongodb::{
     options::ClientOptions,
     Client as MongoClient, Collection,
 };
-use yani::providers::openai::TEXT_EMBEDDING_ADA_002;
+use oxide::providers::openai::TEXT_EMBEDDING_ADA_002;
 use serde::Deserialize;
 use std::env;
 
-use yani::{
+use oxide::{
     embeddings::EmbeddingsBuilder, providers::openai::Client, vector_store::VectorStoreIndex, Embed,
 };
-use yani_mongodb::{MongoDbVectorIndex, SeyanihParams};
+use oxide_mongodb::{MongoDbVectorIndex, SeoxidehParams};
 
 // Shape of data that needs to be RAG'ed.
 // The definition field will be used to generate embeddings.
@@ -86,7 +86,7 @@ async fn main() -> Result<(), anyhow::Error> {
     // Note: a vector index called "vector_index" must exist on the MongoDB collection you are querying.
     // IMPORTANT: Reuse the same model that was used to generate the embeddings 
     let index =
-        MongoDbVectorIndex::new(collection, model, "vector_index", SeyanihParams::new()).await?;
+        MongoDbVectorIndex::new(collection, model, "vector_index", SeoxidehParams::new()).await?;
 
     // Query the index
     let results = index.top_n::<Word>("What is a linglingdong?", 1).await?;

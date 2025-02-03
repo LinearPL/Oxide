@@ -1,6 +1,6 @@
-use yani::embeddings::{Embedding, EmbeddingModel};
-use yani::vector_store::{VectorStoreError, VectorStoreIndex};
-use yani::OneOrMany;
+use oxide::embeddings::{Embedding, EmbeddingModel};
+use oxide::vector_store::{VectorStoreError, VectorStoreIndex};
+use oxide::OneOrMany;
 use serde::Deserialize;
 use std::marker::PhantomData;
 use tokio_rusqlite::Connection;
@@ -42,9 +42,9 @@ impl Column {
 
 /// Example of a document type that can be used with SqliteVectorStore
 /// ```rust
-/// use yani::Embed;
+/// use oxide::Embed;
 /// use serde::Deserialize;
-/// use yani_sqlite::{Column, ColumnValue, SqliteVectorStoreTable};
+/// use oxide_sqlite::{Column, ColumnValue, SqliteVectorStoreTable};
 ///
 /// #[derive(Embed, Clone, Debug, Deserialize)]
 /// struct Document {
@@ -233,20 +233,20 @@ impl<E: EmbeddingModel + 'static, T: SqliteVectorStoreTable + 'static> SqliteVec
     }
 }
 
-/// SQLite vector store implementation for yani.
+/// SQLite vector store implementation for oxide.
 ///
-/// This crate provides a SQLite-based vector store implementation that can be used with yani.
-/// It uses the `sqlite-vec` extension to enable vector similarity seyanih capabilities.
+/// This crate provides a SQLite-based vector store implementation that can be used with oxide.
+/// It uses the `sqlite-vec` extension to enable vector similarity seoxideh capabilities.
 ///
 /// # Example
 /// ```rust
-/// use yani::{
+/// use oxide::{
 ///     embeddings::EmbeddingsBuilder,
 ///     providers::openai::{Client, TEXT_EMBEDDING_ADA_002},
 ///     vector_store::VectorStoreIndex,
 ///     Embed,
 /// };
-/// use yani_sqlite::{Column, ColumnValue, SqliteVectorStore, SqliteVectorStoreTable};
+/// use oxide_sqlite::{Column, ColumnValue, SqliteVectorStore, SqliteVectorStoreTable};
 /// use serde::Deserialize;
 /// use tokio_rusqlite::Connection;
 ///
@@ -309,7 +309,7 @@ impl<E: EmbeddingModel + 'static, T: SqliteVectorStoreTable + 'static> SqliteVec
 /// // Add to vector store
 /// vector_store.add_rows(embeddings).await?;
 ///
-/// // Create index and seyanih
+/// // Create index and seoxideh
 /// let index = vector_store.index(model);
 /// let results = index
 ///     .top_n::<Document>("Example query", 2)

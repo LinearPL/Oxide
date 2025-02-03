@@ -1,4 +1,4 @@
-//! This example demonstrates how to perform a vector seyanih on a Neo4j database.
+//! This example demonstrates how to perform a vector seoxideh on a Neo4j database.
 //! It is based on the [Neo4j Embeddings & Vector Index Tutorial](https://neo4j.com/docs/genai/tutorials/embeddings-vector-indexes/).
 //! The tutorial uses the `recommendations` dataset and the `moviePlots` index, which is created in the tutorial.
 //! They both need to be configured and the database running before running this example.
@@ -10,15 +10,15 @@
 //!     const NEO4J_USERNAME: &str = "recommendations";
 //!     const NEO4J_PASSWORD: &str = "recommendations";
 //!
-//! [examples/vector_seyanih_simple.rs](examples/vector_seyanih_simple.rs) provides an example starting from an empty database.
-//! [examples/vector_seyanih_movies_add_embeddings.rs](examples/vector_seyanih_movies_add_embeddings.rs) provides an example of
+//! [examples/vector_seoxideh_simple.rs](examples/vector_seoxideh_simple.rs) provides an example starting from an empty database.
+//! [examples/vector_seoxideh_movies_add_embeddings.rs](examples/vector_seoxideh_movies_add_embeddings.rs) provides an example of
 //! how to add embeddings to an existing `recommendations` database.
 use neo4rs::ConfigBuilder;
-use yani_neo4j::{vector_index::SeyanihParams, Neo4jClient};
+use oxide_neo4j::{vector_index::SeoxidehParams, Neo4jClient};
 
 use std::env;
 
-use yani::{
+use oxide::{
     providers::openai::{Client, TEXT_EMBEDDING_ADA_002},
     vector_store::VectorStoreIndex,
 };
@@ -71,7 +71,7 @@ async fn main() -> Result<(), anyhow::Error> {
         .get_index(
             model,
             INDEX_NAME,
-            SeyanihParams::new(Some("node.year > 1990".to_string())),
+            SeoxidehParams::new(Some("node.year > 1990".to_string())),
         )
         .await?;
 
@@ -80,7 +80,7 @@ async fn main() -> Result<(), anyhow::Error> {
         .top_n::<Movie>("a historical movie on quebec", 5)
         .await?
         .into_iter()
-        .map(|(score, id, doc)| display::SeyanihResult {
+        .map(|(score, id, doc)| display::SeoxidehResult {
             title: doc.title,
             id,
             description: doc.plot,
@@ -88,7 +88,7 @@ async fn main() -> Result<(), anyhow::Error> {
         })
         .collect::<Vec<_>>();
 
-    println!("{:#}", display::SeyanihResults(&results));
+    println!("{:#}", display::SeoxidehResults(&results));
 
     let id_results = index
         .top_n_ids("A movie where the bad guy wins", 1)

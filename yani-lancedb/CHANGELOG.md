@@ -7,35 +7,35 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.2](https://github.com/monami8484/yani/compare/yani-lancedb-v0.2.1...yani-lancedb-v0.2.2) - 2025-01-13
+## [0.2.2](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.2.1...oxide-lancedb-v0.2.2) - 2025-01-13
 
 ### Other
 
 - Mock provider API in vector store integration tests (#186)
 
-## [0.2.1](https://github.com/monami8484/yani/compare/yani-lancedb-v0.2.0...yani-lancedb-v0.2.1) - 2024-12-19
+## [0.2.1](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.2.0...oxide-lancedb-v0.2.1) - 2024-12-19
 
 ### Other
 
 - *(integration-tests)* LanceDB (#136)
 
-## [0.2.0](https://github.com/monami8484/yani/compare/yani-lancedb-v0.1.2...yani-lancedb-v0.2.0) - 2024-12-03
+## [0.2.0](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.1.2...oxide-lancedb-v0.2.0) - 2024-12-03
 
 ### Added
 
-- embeddings API overhaul ([#120](https://github.com/monami8484/yani/pull/120))
+- embeddings API overhaul ([#120](https://github.com/monami8484/oxide/pull/120))
 
 ### Fixed
 
-- *(yani-lancedb)* rag embedding filtering ([#104](https://github.com/monami8484/yani/pull/104))
+- *(oxide-lancedb)* rag embedding filtering ([#104](https://github.com/monami8484/oxide/pull/104))
 
-## [0.1.2](https://github.com/monami8484/yani/compare/yani-lancedb-v0.1.1...yani-lancedb-v0.1.2) - 2024-11-13
+## [0.1.2](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.1.1...oxide-lancedb-v0.1.2) - 2024-11-13
 
 ### Other
 
 - update Cargo.lock dependencies
 
-## [0.1.1](https://github.com/monami8484/yani/compare/yani-lancedb-v0.1.0...yani-lancedb-v0.1.1) - 2024-11-07
+## [0.1.1](https://github.com/monami8484/oxide/compare/oxide-lancedb-v0.1.0...oxide-lancedb-v0.1.1) - 2024-11-07
 
 ### Fixed
 
@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - add coloured logos for integrations
 - *(readme)* test new logo coloration
 
-## [0.1.0](https://github.com/monami8484/yani/releases/tag/yani-lancedb-v0.1.0) - 2024-10-24
+## [0.1.0](https://github.com/monami8484/oxide/releases/tag/oxide-lancedb-v0.1.0) - 2024-10-24
 
 ### Added
 
@@ -57,13 +57,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - merge all arrow columns into JSON document in deserializer
 - finish implementing deserialiser for record batch
 - implement deserialization for any recordbatch returned from lanceDB
-- add indexes and tables for simple seyanih
+- add indexes and tables for simple seoxideh
 - create enum for embedding models
-- add vector_seyanih_s3_ann example
-- implement ANN seyanih example
+- add vector_seoxideh_s3_ann example
+- implement ANN seoxideh example
 - start implementing top_n_from_query for trait VectorStoreIndex
 - implement get_document method of VectorStore trait
-- implement seyanih by id for VectorStore trait
+- implement seoxideh by id for VectorStore trait
 - implement add_documents on VectorStore trait
 - start implementing VectorStore trait for lancedb
 
@@ -73,7 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - make PR changes Pt II
 - make PR changes pt I
 - *(lancedb)* replace VectorStoreIndexDyn with VectorStoreIndex in examples
-- mongodb vector seyanih - use num_candidates from seyanih params
+- mongodb vector seoxideh - use num_candidates from seoxideh params
 - fix bug in deserializing type run end
 - make PR requested changes
 - reduce opanai generated content in ANN examples
@@ -84,13 +84,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - lance db examples
 - add example docstring
 - add doc strings
-- update yani core version on lancedb crate, remove implementation of VectorStore trait
+- update oxide core version on lancedb crate, remove implementation of VectorStore trait
 - remove print statement
 - use constants instead of enum for model names
 - remove associated type on VectorStoreIndex trait
 - cargo fmt
 - conversions from arrow types to primitive types
 - Add doc strings to utility methods
-- add doc string to mongodb seyanih params struct
+- add doc string to mongodb seoxideh params struct
 - Merge branch 'main' into feat(vector-store)/lancedb
 - create wrapper for vec<DocumentEmbeddings> for from/tryfrom traits

@@ -2,12 +2,12 @@ use futures::StreamExt;
 use mongodb::{
     bson::{self, doc},
     options::ClientOptions,
-    Collection, SeyanihIndexModel,
+    Collection, SeoxidehIndexModel,
 };
-use yani::{
+use oxide::{
     embeddings::EmbeddingsBuilder, providers::openai, vector_store::VectorStoreIndex, Embed,
 };
-use yani_mongodb::{MongoDbVectorIndex, SeyanihParams};
+use oxide_mongodb::{MongoDbVectorIndex, SeoxidehParams};
 use serde_json::json;
 use testcontainers::{
     core::{IntoContainerPort, WaitFor},
@@ -24,15 +24,15 @@ struct Word {
     definition: String,
 }
 
-const VECTOR_SEyaniH_INDEX_NAME: &str = "vector_index";
+const VECTOR_SEoxideH_INDEX_NAME: &str = "vector_index";
 const MONGODB_PORT: u16 = 27017;
 const COLLECTION_NAME: &str = "words";
-const DATABASE_NAME: &str = "yani";
-const USERNAME: &str = "yaniuser";
-const PASSWORD: &str = "yanipassword";
+const DATABASE_NAME: &str = "oxide";
+const USERNAME: &str = "oxideuser";
+const PASSWORD: &str = "oxidepassword";
 
 #[tokio::test]
-async fn vector_seyanih_test() {
+async fn vector_seoxideh_test() {
     // Setup mock openai API
     let server = httpmock::MockServer::start();
 
@@ -143,8 +143,8 @@ async fn vector_seyanih_test() {
     let index = MongoDbVectorIndex::new(
         collection,
         model,
-        VECTOR_SEyaniH_INDEX_NAME,
-        SeyanihParams::new(),
+        VECTOR_SEoxideH_INDEX_NAME,
+        SeoxidehParams::new(),
     )
     .await
     .unwrap();
@@ -167,15 +167,15 @@ async fn vector_seyanih_test() {
     )
 }
 
-async fn create_seyanih_index(collection: &Collection<bson::Document>) {
+async fn create_seoxideh_index(collection: &Collection<bson::Document>) {
     let max_attempts = 5;
 
     for attempt in 0..max_attempts {
         match collection
-            .create_seyanih_index(
-                SeyanihIndexModel::builder()
-                    .name(Some(VECTOR_SEyaniH_INDEX_NAME.to_string()))
-                    .index_type(Some(mongodb::SeyanihIndexType::VectorSeyanih))
+            .create_seoxideh_index(
+                SeoxidehIndexModel::builder()
+                    .name(Some(VECTOR_SEoxideH_INDEX_NAME.to_string()))
+                    .index_type(Some(mongodb::SeoxidehIndexType::VectorSeoxideh))
                     .definition(doc! {
                         "fields": [{
                             "numDimensions": 1536,
@@ -192,8 +192,8 @@ async fn create_seyanih_index(collection: &Collection<bson::Document>) {
                 // Wait for index to be available
                 for _ in 0..max_attempts {
                     let indexes = collection
-                        .list_seyanih_indexes()
-                        .name(VECTOR_SEyaniH_INDEX_NAME)
+                        .list_seoxideh_indexes()
+                        .name(VECTOR_SEoxideH_INDEX_NAME)
                         .await
                         .unwrap()
                         .collect::<Vec<_>>()
@@ -207,7 +207,7 @@ async fn create_seyanih_index(collection: &Collection<bson::Document>) {
                                 let name_matches = i
                                     .get_str("name")
                                     .ok()
-                                    .map_or(false, |name| name == VECTOR_SEyaniH_INDEX_NAME);
+                                    .map_or(false, |name| name == VECTOR_SEoxideH_INDEX_NAME);
                                 let status_ready = i
                                     .get_str("status")
                                     .ok()
@@ -233,7 +233,7 @@ async fn create_seyanih_index(collection: &Collection<bson::Document>) {
     }
 
     panic!(
-        "Failed to create seyanih index after {} attempts",
+        "Failed to create seoxideh index after {} attempts",
         max_attempts
     );
 }
@@ -261,8 +261,8 @@ async fn bootstrap_collection(host: String, port: u16) -> Collection<bson::Docum
         .database(DATABASE_NAME)
         .collection(COLLECTION_NAME);
 
-    // Create the seyanih index
-    create_seyanih_index(&collection).await;
+    // Create the seoxideh index
+    create_seoxideh_index(&collection).await;
 
     collection
 }

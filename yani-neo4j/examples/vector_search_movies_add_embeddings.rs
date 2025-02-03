@@ -1,4 +1,4 @@
-//! This example shows how to perform a vector seyanih on a Neo4j database.
+//! This example shows how to perform a vector seoxideh on a Neo4j database.
 //! It is based on the [Neo4j Embeddings & Vector Index Tutorial](https://neo4j.com/docs/genai/tutorials/embeddings-vector-indexes/).
 //! The tutorial uses the `recommendations` dataset and the `moviePlots` index, which is created in the tutorial.
 //! See the Neo4j tutorial for more information on how to import the dataset.
@@ -7,14 +7,14 @@
 
 use std::env;
 
-use yani::{
+use oxide::{
     providers::openai::{Client, TEXT_EMBEDDING_ADA_002},
     vector_store::VectorStoreIndex,
 };
 
 use neo4rs::*;
-use yani_neo4j::{
-    vector_index::{IndexConfig, SeyanihParams},
+use oxide_neo4j::{
+    vector_index::{IndexConfig, SeoxidehParams},
     Neo4jClient, ToBoltType,
 };
 use serde::{Deserialize, Serialize};
@@ -113,7 +113,7 @@ async fn main() -> Result<(), anyhow::Error> {
         .get_index(
             model,
             INDEX_NAME,
-            SeyanihParams::new(Some("node.year > 1990".to_string())),
+            SeoxidehParams::new(Some("node.year > 1990".to_string())),
         )
         .await?;
 
@@ -122,7 +122,7 @@ async fn main() -> Result<(), anyhow::Error> {
         .top_n::<Movie>("a historical movie on quebec", 5)
         .await?
         .into_iter()
-        .map(|(score, id, doc)| display::SeyanihResult {
+        .map(|(score, id, doc)| display::SeoxidehResult {
             title: doc.title,
             id,
             description: doc.plot,
@@ -130,7 +130,7 @@ async fn main() -> Result<(), anyhow::Error> {
         })
         .collect::<Vec<_>>();
 
-    println!("{:#}", display::SeyanihResults(&results));
+    println!("{:#}", display::SeoxidehResults(&results));
 
     let id_results = index
         .top_n_ids("What is a linglingdong?", 1)

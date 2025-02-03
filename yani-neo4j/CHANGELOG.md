@@ -7,50 +7,50 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.2](https://github.com/monami8484/yani/compare/yani-neo4j-v0.2.1...yani-neo4j-v0.2.2) - 2025-01-13
+## [0.2.2](https://github.com/monami8484/oxide/compare/oxide-neo4j-v0.2.1...oxide-neo4j-v0.2.2) - 2025-01-13
 
 ### Other
 
-- *(yani-neo4j)* remove old tests (#197)
-- *(yani-neo4j)* Fix neo4j integration test (#190)
+- *(oxide-neo4j)* remove old tests (#197)
+- *(oxide-neo4j)* Fix neo4j integration test (#190)
 - Mock provider API in vector store integration tests (#186)
 - fix typo
 
-## [0.2.1](https://github.com/monami8484/yani/compare/yani-neo4j-v0.2.0...yani-neo4j-v0.2.1) - 2024-12-19
+## [0.2.1](https://github.com/monami8484/oxide/compare/oxide-neo4j-v0.2.0...oxide-neo4j-v0.2.1) - 2024-12-19
 
 ### Other
 
 - update Cargo.lock dependencies
 
-## [0.2.0](https://github.com/monami8484/yani/compare/yani-neo4j-v0.1.2...yani-neo4j-v0.2.0) - 2024-12-03
+## [0.2.0](https://github.com/monami8484/oxide/compare/oxide-neo4j-v0.1.2...oxide-neo4j-v0.2.0) - 2024-12-03
 
 ### Added
 
-- embeddings API overhaul ([#120](https://github.com/monami8484/yani/pull/120))
+- embeddings API overhaul ([#120](https://github.com/monami8484/oxide/pull/120))
 
 ### Fixed
 
-- *(neo4j)* remove embeddings from top_n lookup ([#118](https://github.com/monami8484/yani/pull/118))
+- *(neo4j)* remove embeddings from top_n lookup ([#118](https://github.com/monami8484/oxide/pull/118))
 
 ### Other
 
-- *(integration test)* Neo4J ([#133](https://github.com/monami8484/yani/pull/133))
+- *(integration test)* Neo4J ([#133](https://github.com/monami8484/oxide/pull/133))
 
-## [0.1.2](https://github.com/monami8484/yani/compare/yani-neo4j-v0.1.1...yani-neo4j-v0.1.2) - 2024-11-13
+## [0.1.2](https://github.com/monami8484/oxide/compare/oxide-neo4j-v0.1.1...oxide-neo4j-v0.1.2) - 2024-11-13
 
 ### Other
 
-- updated the following local packages: yani-core
+- updated the following local packages: oxide-core
 
-## [0.1.1](https://github.com/monami8484/yani/compare/yani-neo4j-v0.1.0...yani-neo4j-v0.1.1) - 2024-11-07
+## [0.1.1](https://github.com/monami8484/oxide/compare/oxide-neo4j-v0.1.0...oxide-neo4j-v0.1.1) - 2024-11-07
 
 ### Fixed
 
 - *(neo4j)* last minute doc and const adjustments
 
-## [0.1.0](https://github.com/monami8484/yani/compare/yani-mongodb-v0.0.7...yani-mongodb-v0.1.0) - 2024-10-22
+## [0.1.0](https://github.com/monami8484/oxide/compare/oxide-mongodb-v0.0.7...oxide-mongodb-v0.1.0) - 2024-10-22
 
 ### Features
 
 - initial implementation
-- supports `top_n` seyanih for an existing index and database
+- supports `top_n` seoxideh for an existing index and database

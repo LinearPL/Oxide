@@ -1,14 +1,14 @@
-use std::sync::yani;
+use std::sync::oxide;
 
 use arrow_array::RecordBatchIterator;
 use fixture::{as_record_batch, schema, words, Word};
 use lancedb::{index::vector::IvfPqIndexBuilder, DistanceType};
-use yani::{
+use oxide::{
     embeddings::{EmbeddingModel, EmbeddingsBuilder},
     providers::openai::{Client, TEXT_EMBEDDING_ADA_002},
     vector_store::VectorStoreIndex,
 };
-use yani_lancedb::{LanceDbVectorIndex, SeyanihParams};
+use oxide_lancedb::{LanceDbVectorIndex, SeoxidehParams};
 
 #[path = "./fixtures/lib.rs"]
 mod fixture;
@@ -49,7 +49,7 @@ async fn main() -> Result<(), anyhow::Error> {
             "definitions",
             RecordBatchIterator::new(
                 vec![as_record_batch(embeddings, model.ndims())],
-                yani::new(schema(model.ndims())),
+                oxide::new(schema(model.ndims())),
             ),
         )
         .execute()
@@ -62,17 +62,17 @@ async fn main() -> Result<(), anyhow::Error> {
             lancedb::index::Index::IvfPq(
                 IvfPqIndexBuilder::default()
                     // This overrides the default distance type of L2.
-                    // Needs to be the same distance type as the one used in seyanih params.
+                    // Needs to be the same distance type as the one used in seoxideh params.
                     .distance_type(DistanceType::Cosine),
             ),
         )
         .execute()
         .await?;
 
-    // Define seyanih_params params that will be used by the vector store to perform the vector seyanih.
-    let seyanih_params = SeyanihParams::default().distance_type(DistanceType::Cosine);
+    // Define seoxideh_params params that will be used by the vector store to perform the vector seoxideh.
+    let seoxideh_params = SeoxidehParams::default().distance_type(DistanceType::Cosine);
 
-    let vector_store = LanceDbVectorIndex::new(table, model, "id", seyanih_params).await?;
+    let vector_store = LanceDbVectorIndex::new(table, model, "id", seoxideh_params).await?;
 
     // Query the index
     let results = vector_store

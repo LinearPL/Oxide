@@ -1,15 +1,15 @@
 [package]
-name = "yani-sqlite"
+name = "oxide-sqlite"
 version = "0.1.2"
 edition = "2021"
-description = "SQLite-based vector store implementation for the yani framework"
+description = "SQLite-based vector store implementation for the oxide framework"
 license = "MIT"
 
 [lib]
 doctest = false
 
 [dependencies]
-yani-core = { path = "../yani-core", version = "0.6.1",  features = ["derive"] }
+oxide-core = { path = "../oxide-core", version = "0.6.1",  features = ["derive"] }
 rusqlite = { version = "0.32", features = ["bundled"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"

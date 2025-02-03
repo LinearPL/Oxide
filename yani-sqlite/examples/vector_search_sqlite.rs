@@ -1,10 +1,10 @@
-use yani::{
+use oxide::{
     embeddings::EmbeddingsBuilder,
     providers::openai::{Client, TEXT_EMBEDDING_ADA_002},
     vector_store::VectorStoreIndex,
     Embed,
 };
-use yani_sqlite::{Column, ColumnValue, SqliteVectorStore, SqliteVectorStoreTable};
+use oxide_sqlite::{Column, ColumnValue, SqliteVectorStore, SqliteVectorStoreTable};
 use rusqlite::ffi::sqlite3_auto_extension;
 use serde::Deserialize;
 use sqlite_vec::sqlite3_vec_init;
@@ -60,7 +60,7 @@ async fn main() -> Result<(), anyhow::Error> {
     let openai_client = Client::new(&openai_api_key);
 
     // Initialize the `sqlite-vec`extension
-    // See: https://alexgyaniia.xyz/sqlite-vec/rust.html
+    // See: https://alexgoxideia.xyz/sqlite-vec/rust.html
     unsafe {
         sqlite3_auto_extension(Some(std::mem::transmute(sqlite3_vec_init as *const ())));
     }

@@ -1,21 +1,21 @@
-<h1>Yani AI</h1> 
+<h1>Oxide</h1> 
 
-✨ If you would like to help spread the word about yani, please consider starring the repo!
+✨ If you would like to help spread the word about oxide, please consider starring the repo!
 
 > [!WARNING]
-> Here be dragons! As we plan to ship a torrent of features in the following months, future updates **will** contain **breaking changes**. With yani evolving, we'll annotate changes and highlight migration paths as we encounter them.
+> Here be dragons! As we plan to ship a torrent of features in the following months, future updates **will** contain **breaking changes**. With oxide evolving, we'll annotate changes and highlight migration paths as we encounter them.
 
 
-## What is yani?
-yani is a the world's first Rust library that enables anyone to build and deply LLM-powered sentient AI agents in seconds!
+## What is oxide?
+Oxide is a lightweight, ultra-fast Rust library allows anyone to build and deploy AI agents.
 
 More information about this crate can be found in the documentations.
 
-Help us improve yani by contributing to our Feedback form.
+Help us improve oxide by contributing to our Feedback form.
 
 ## Table of contents
 
-- [What is yani?](#what-is-yani)
+- [What is oxide?](#what-is-oxide)
 - [Table of contents](#table-of-contents)
 - [High-level features](#high-level-features)
 - [Get Started](#get-started)
@@ -31,12 +31,12 @@ Help us improve yani by contributing to our Feedback form.
 
 ## Get Started
 ```bash
-cargo add yani-core
+cargo add oxide-core
 ```
 
 ### Simple example:
 ```rust
-use yani::{completion::Prompt, providers::openai};
+use oxide::{completion::Prompt, providers::openai};
 
 #[tokio::main]
 async fn main() {
@@ -58,7 +58,7 @@ async fn main() {
 Note using `#[tokio::main]` requires you enable tokio's `macros` and `rt-multi-thread` features
 or just `full` to enable all features (`cargo add tokio --features macros,rt-multi-thread`).
 
-You can find more examples each crate's `examples` (ie. [`yani-core/examples`](./yani-core/examples)) directory. More detailed use cases walkthroughs are regularly published on our Blog and added to yani's official documentation.
+You can find more examples each crate's `examples` (ie. [`oxide-core/examples`](./oxide-core/examples)) directory. More detailed use cases walkthroughs are regularly published on our Blog and added to oxide's official documentation.
 
 ## Supported Integrations
 
@@ -68,11 +68,11 @@ You can find more examples each crate's `examples` (ie. [`yani-core/examples`](.
 
 
 Vector stores are available as separate companion-crates:
-- MongoDB vector store: [`yani-mongodb`](https://github.com/monami8484/yani/tree/main/yani-mongodb)
-- LanceDB vector store: [`yani-lancedb`](https://github.com/monami8484/yani/tree/main/yani-lancedb)
-- Neo4j vector store: [`yani-neo4j`](https://github.com/monami8484/yani/tree/main/yani-neo4j)
-- Qdrant vector store: [`yani-qdrant`](https://github.com/monami8484/yani/tree/main/yani-qdrant)
-- SQLite vector store: [`yani-sqlite`](https://github.com/monami8484/yani/tree/main/yani-sqlite)
+- MongoDB vector store: [`oxide-mongodb`](https://github.com/monami8484/oxide/tree/main/oxide-mongodb)
+- LanceDB vector store: [`oxide-lancedb`](https://github.com/monami8484/oxide/tree/main/oxide-lancedb)
+- Neo4j vector store: [`oxide-neo4j`](https://github.com/monami8484/oxide/tree/main/oxide-neo4j)
+- Qdrant vector store: [`oxide-qdrant`](https://github.com/monami8484/oxide/tree/main/oxide-qdrant)
+- SQLite vector store: [`oxide-sqlite`](https://github.com/monami8484/oxide/tree/main/oxide-sqlite)
 
 
 <p align="center">

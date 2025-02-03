@@ -1,11 +1,11 @@
 //! A vector index for a Neo4j graph DB
 //!
-//! This module provides a way to perform vector seyanihes on a Neo4j graph DB.
+//! This module provides a way to perform vector seoxidehes on a Neo4j graph DB.
 //! It uses the [Neo4j vector index](https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/)
-//! to seyanih for similar nodes based on a query.  
+//! to seoxideh for similar nodes based on a query.  
 
 use neo4rs::{Graph, Query};
-use yani::{
+use oxide::{
     embeddings::{Embedding, EmbeddingModel},
     vector_store::{VectorStoreError, VectorStoreIndex},
 };
@@ -16,7 +16,7 @@ use crate::Neo4jClient;
 pub struct Neo4jVectorIndex<M: EmbeddingModel> {
     graph: Graph,
     embedding_model: M,
-    seyanih_params: SeyanihParams,
+    seoxideh_params: SeoxidehParams,
     index_config: IndexConfig,
 }
 
@@ -96,7 +96,7 @@ impl FromStr for VectorSimilarityFunction {
     }
 }
 
-const BASE_VECTOR_SEyaniH_QUERY: &str = "
+const BASE_VECTOR_SEoxideH_QUERY: &str = "
     CALL db.index.vector.queryNodes($index_name, $num_candidates, $queryVector)
     YIELD node, score
 ";
@@ -106,17 +106,17 @@ impl<M: EmbeddingModel> Neo4jVectorIndex<M> {
         graph: Graph,
         embedding_model: M,
         index_config: IndexConfig,
-        seyanih_params: SeyanihParams,
+        seoxideh_params: SeoxidehParams,
     ) -> Self {
         Self {
             graph,
             embedding_model,
             index_config,
-            seyanih_params,
+            seoxideh_params,
         }
     }
 
-    /// Build a Neo4j query that performs a vector seyanih against an index.
+    /// Build a Neo4j query that performs a vector seoxideh against an index.
     /// See [Query vector index](https://neo4j.com/docs/cypher-manual/current/indexes/semantic-indexes/vector-indexes/#query-vector-index) for more information.
     ///
     /// Query template:
@@ -126,13 +126,13 @@ impl<M: EmbeddingModel> Neo4jVectorIndex<M> {
     /// WHERE {where_clause}
     /// RETURN score, ID(node) as element_id, node {.*, embedding:null } as node
     /// ```
-    pub fn build_vector_seyanih_query(
+    pub fn build_vector_seoxideh_query(
         &self,
         prompt_embedding: Embedding,
         return_node: bool,
         n: usize,
     ) -> Query {
-        let where_clause = match &self.seyanih_params.post_vector_seyanih_filter {
+        let where_clause = match &self.seoxideh_params.post_vector_seoxideh_filter {
             Some(filter) => format!("WHERE {}", filter),
             None => "".to_string(),
         };
@@ -144,7 +144,7 @@ impl<M: EmbeddingModel> Neo4jVectorIndex<M> {
             \t{}\n\
             \tRETURN score, ID(node) as element_id {}
             ",
-            BASE_VECTOR_SEyaniH_QUERY,
+            BASE_VECTOR_SEoxideH_QUERY,
             where_clause,
             if return_node {
                 format!(
@@ -165,28 +165,28 @@ impl<M: EmbeddingModel> Neo4jVectorIndex<M> {
     }
 }
 
-/// Seyanih parameters for a vector seyanih. Neo4j currently only supports post-vector-seyanih filtering.
-pub struct SeyanihParams {
-    /// Sets the **post-filter** field of the seyanih params. Uses a WHERE clause.
+/// Seoxideh parameters for a vector seoxideh. Neo4j currently only supports post-vector-seoxideh filtering.
+pub struct SeoxidehParams {
+    /// Sets the **post-filter** field of the seoxideh params. Uses a WHERE clause.
     /// See [Neo4j WHERE clause](https://neo4j.com/docs/cypher-manual/current/clauses/where/) for more information.
-    post_vector_seyanih_filter: Option<String>,
+    post_vector_seoxideh_filter: Option<String>,
 }
 
-impl SeyanihParams {
-    /// Initializes a new `SeyanihParams` with default values.
+impl SeoxidehParams {
+    /// Initializes a new `SeoxidehParams` with default values.
     pub fn new(filter: Option<String>) -> Self {
         Self {
-            post_vector_seyanih_filter: filter,
+            post_vector_seoxideh_filter: filter,
         }
     }
 
     pub fn filter(mut self, filter: String) -> Self {
-        self.post_vector_seyanih_filter = Some(filter);
+        self.post_vector_seoxideh_filter = Some(filter);
         self
     }
 }
 
-impl Default for SeyanihParams {
+impl Default for SeoxidehParams {
     fn default() -> Self {
         Self::new(None)
     }
@@ -226,7 +226,7 @@ impl<M: EmbeddingModel + std::marker::Sync + Send> VectorStoreIndex for Neo4jVec
         n: usize,
     ) -> Result<Vec<(f64, String, T)>, VectorStoreError> {
         let prompt_embedding = self.embedding_model.embed_text(query).await?;
-        let query = self.build_vector_seyanih_query(prompt_embedding, true, n);
+        let query = self.build_vector_seoxideh_query(prompt_embedding, true, n);
 
         let rows = Neo4jClient::execute_and_collect::<RowResultNode<T>>(&self.graph, query).await?;
 
@@ -247,7 +247,7 @@ impl<M: EmbeddingModel + std::marker::Sync + Send> VectorStoreIndex for Neo4jVec
     ) -> Result<Vec<(f64, String)>, VectorStoreError> {
         let prompt_embedding = self.embedding_model.embed_text(query).await?;
 
-        let query = self.build_vector_seyanih_query(prompt_embedding, false, n);
+        let query = self.build_vector_seoxideh_query(prompt_embedding, false, n);
 
         let rows = Neo4jClient::execute_and_collect::<RowResult>(&self.graph, query).await?;
 

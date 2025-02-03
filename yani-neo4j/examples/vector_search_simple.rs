@@ -1,4 +1,4 @@
-//! Simple end-to-end example of the vector seyanih capabilities of the `yani-neo4j` crate.
+//! Simple end-to-end example of the vector seoxideh capabilities of the `oxide-neo4j` crate.
 //! This example expects a running Neo4j instance running.
 //! It:
 //! 1. Generates embeddings for a set of 3 "documents"
@@ -9,13 +9,13 @@
 use std::env;
 
 use futures::{StreamExt, TryStreamExt};
-use yani::{
+use oxide::{
     embeddings::EmbeddingsBuilder,
     providers::openai::{Client, TEXT_EMBEDDING_ADA_002},
     vector_store::VectorStoreIndex as _,
     Embed,
 };
-use yani_neo4j::{vector_index::SeyanihParams, Neo4jClient, ToBoltType};
+use oxide_neo4j::{vector_index::SeoxidehParams, Neo4jClient, ToBoltType};
 
 #[derive(Embed, Clone, Debug)]
 pub struct Word {
@@ -113,7 +113,7 @@ async fn main() -> Result<(), anyhow::Error> {
     // Create a vector index on our vector store
     // IMPORTANT: Reuse the same model that was used to generate the embeddings
     let index = neo4j_client
-        .get_index(model, "vector_index", SeyanihParams::default())
+        .get_index(model, "vector_index", SeoxidehParams::default())
         .await?;
 
     // The struct that will reprensent a node in the database. Used to deserialize the results of the query (passed to the `top_n` methods)

@@ -1,9 +1,9 @@
-use std::sync::yani;
+use std::sync::oxide;
 
 use arrow_array::{types::Float64Type, ArrayRef, FixedSizeListArray, RecordBatch, StringArray};
 use lancedb::arrow::arrow_schema::{DataType, Field, Fields, Schema};
-use yani::embeddings::Embedding;
-use yani::{Embed, OneOrMany};
+use oxide::embeddings::Embedding;
+use oxide::{Embed, OneOrMany};
 use serde::Deserialize;
 
 #[derive(Embed, Clone, Deserialize, Debug)]
@@ -38,7 +38,7 @@ pub fn schema(dims: usize) -> Schema {
         Field::new(
             "embedding",
             DataType::FixedSizeList(
-                yani::new(Field::new("item", DataType::Float64, true)),
+                oxide::new(Field::new("item", DataType::Float64, true)),
                 dims as i32,
             ),
             false,
@@ -83,9 +83,9 @@ pub fn as_record_batch(
     );
 
     RecordBatch::try_from_iter(vec![
-        ("id", yani::new(id) as ArrayRef),
-        ("definition", yani::new(definition) as ArrayRef),
-        ("embedding", yani::new(embedding) as ArrayRef),
+        ("id", oxide::new(id) as ArrayRef),
+        ("definition", oxide::new(definition) as ArrayRef),
+        ("embedding", oxide::new(embedding) as ArrayRef),
     ])
 }
 

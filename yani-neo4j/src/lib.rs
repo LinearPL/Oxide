@@ -1,9 +1,9 @@
-//! A yani vector store for Neo4j.
+//! A oxide vector store for Neo4j.
 //!
-//! This crate is a companion crate to the [yani-core crate](https://github.com/yani-ai/yani-core).
+//! This crate is a companion crate to the [oxide-core crate](https://github.com/oxide-ai/oxide-core).
 //! It provides a vector store implementation that uses Neo4j as the underlying datastore.
 //!
-//! See the [README](https://github.com/monami8484/yani/tree/main/yani-neo4j) for more information.
+//! See the [README](https://github.com/monami8484/oxide/tree/main/oxide-neo4j) for more information.
 //!
 //! ## Prerequisites
 //!
@@ -38,11 +38,11 @@
 //! ```
 //!
 //! ## Simple example:
-//! More examples can be found in the [/examples](https://github.com/monami8484/yani/tree/main/yani-neo4j/examples) folder.
+//! More examples can be found in the [/examples](https://github.com/monami8484/oxide/tree/main/oxide-neo4j/examples) folder.
 //! ```
-//! use yani_neo4j::{vector_index::*, Neo4jClient};
+//! use oxide_neo4j::{vector_index::*, Neo4jClient};
 //! use neo4rs::ConfigBuilder;
-//! use yani::{providers::openai::*, vector_store::VectorStoreIndex};
+//! use oxide::{providers::openai::*, vector_store::VectorStoreIndex};
 //! use serde::Deserialize;
 //! use std::env;
 //!
@@ -73,7 +73,7 @@
 //!     let index = client.get_index(
 //!         model,
 //!         "moviePlotsEmbedding",
-//!         SeyanihParams::default()
+//!         SeoxidehParams::default()
 //!     ).await.unwrap();
 //!
 //!     #[derive(Debug, Deserialize)]
@@ -90,15 +90,15 @@ use std::str::FromStr;
 
 use futures::TryStreamExt;
 use neo4rs::*;
-use yani::{embeddings::EmbeddingModel, vector_store::VectorStoreError};
+use oxide::{embeddings::EmbeddingModel, vector_store::VectorStoreError};
 use serde::Deserialize;
-use vector_index::{IndexConfig, Neo4jVectorIndex, SeyanihParams, VectorSimilarityFunction};
+use vector_index::{IndexConfig, Neo4jVectorIndex, SeoxidehParams, VectorSimilarityFunction};
 
 pub struct Neo4jClient {
     pub graph: Graph,
 }
 
-fn neo4j_to_yani_error(e: neo4rs::Error) -> VectorStoreError {
+fn neo4j_to_oxide_error(e: neo4rs::Error) -> VectorStoreError {
     VectorStoreError::DatastoreError(Box::new(e))
 }
 
@@ -185,7 +185,7 @@ impl Neo4jClient {
         graph
             .execute(query)
             .await
-            .map_err(neo4j_to_yani_error)?
+            .map_err(neo4j_to_oxide_error)?
             .into_stream_as::<T>()
             .try_collect::<Vec<T>>()
             .await
@@ -202,7 +202,7 @@ impl Neo4jClient {
         &self,
         model: M,
         index_name: &str,
-        seyanih_params: SeyanihParams,
+        seoxideh_params: SeoxidehParams,
     ) -> Result<Neo4jVectorIndex<M>, VectorStoreError> {
         #[derive(Deserialize)]
         struct IndexInfo {
@@ -235,7 +235,7 @@ impl Neo4jClient {
         let index_config = if let Some(index) = index_info.first() {
             if index.options.index_config.vector_dimensions != model.ndims() as i64 {
                 tracing::warn!(
-                    "The embedding vector dimensions of the existing Neo4j DB index ({}) do not match the provided model dimensions ({}). This may affect seyanih performance.",
+                    "The embedding vector dimensions of the existing Neo4j DB index ({}) do not match the provided model dimensions ({}). This may affect seoxideh performance.",
                     index.options.index_config.vector_dimensions,
                     model.ndims()
                 );
@@ -265,7 +265,7 @@ impl Neo4jClient {
             self.graph.clone(),
             model,
             index_config,
-            seyanih_params,
+            seoxideh_params,
         ))
     }
 

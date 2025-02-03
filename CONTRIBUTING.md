@@ -1,6 +1,6 @@
-# Contributing to yani  
+# Contributing to oxide  
 
-Thank you for considering contributing to yani! Here are some guidelines to help you get started.
+Thank you for considering contributing to oxide! Here are some guidelines to help you get started.
 
 General guidelines and requested contributions can be found in the How to Contribute section of the documentation. 
 
@@ -18,9 +18,9 @@ PRs should be small and focused and should avoid interacting with multiple facet
 
 ## Project Structure
 
-yani is split up into multiple crates in a monorepo structure. The main crate `yani-core` contains all of the foundational abstractions for building with LLMs. This crate avoids adding many new dependencies to keep to lean and only really contains simple provider integrations on top of the base layer of abstractions. Side crates are leveraged to help add important first-party behavior without over burdening the main library with dependencies. For example, `yani-mongodb` contains extra dependencies to be able to interact with `mongodb` as a vector store.
+oxide is split up into multiple crates in a monorepo structure. The main crate `oxide-core` contains all of the foundational abstractions for building with LLMs. This crate avoids adding many new dependencies to keep to lean and only really contains simple provider integrations on top of the base layer of abstractions. Side crates are leveraged to help add important first-party behavior without over burdening the main library with dependencies. For example, `oxide-mongodb` contains extra dependencies to be able to interact with `mongodb` as a vector store.
 
-If you are unsure whether a side-crate should live in the main repo, you can spin up a personal repo containing your crate and create an issue in our repo making the case on whether this side-crate should be integrated in the main repo and maintained by the yani team.
+If you are unsure whether a side-crate should live in the main repo, you can spin up a personal repo containing your crate and create an issue in our repo making the case on whether this side-crate should be integrated in the main repo and maintained by the oxide team.
 
 
 ## Developing
@@ -30,8 +30,8 @@ If you are unsure whether a side-crate should live in the main repo, you can spi
 This should be similar to most rust projects.
 
 ```bash
-git clone https://github.com/monami8484/yani
-cd yani
+git clone https://github.com/monami8484/oxide
+cd oxide
 cargo test
 ```
 

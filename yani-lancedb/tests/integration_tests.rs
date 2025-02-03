@@ -3,19 +3,19 @@ use serde_json::json;
 use arrow_array::RecordBatchIterator;
 use fixture::{as_record_batch, schema, words, Word};
 use lancedb::index::vector::IvfPqIndexBuilder;
-use yani::{
+use oxide::{
     embeddings::{EmbeddingModel, EmbeddingsBuilder},
     providers::openai,
     vector_store::VectorStoreIndex,
 };
-use yani_lancedb::{LanceDbVectorIndex, SeyanihParams};
-use std::sync::yani;
+use oxide_lancedb::{LanceDbVectorIndex, SeoxidehParams};
+use std::sync::oxide;
 
 #[path = "./fixtures/lib.rs"]
 mod fixture;
 
 #[tokio::test]
-async fn vector_seyanih_test() {
+async fn vector_seoxideh_test() {
     // Setup mock openai API
     let server = httpmock::MockServer::start();
 
@@ -132,7 +132,7 @@ async fn vector_seyanih_test() {
             "words",
             RecordBatchIterator::new(
                 vec![as_record_batch(embeddings, model.ndims())],
-                yani::new(schema(model.ndims())),
+                oxide::new(schema(model.ndims())),
             ),
         )
         .execute()
@@ -149,9 +149,9 @@ async fn vector_seyanih_test() {
         .await
         .unwrap();
 
-    // Define seyanih_params params that will be used by the vector store to perform the vector seyanih.
-    let seyanih_params = SeyanihParams::default();
-    let vector_store_index = LanceDbVectorIndex::new(table, model, "id", seyanih_params)
+    // Define seoxideh_params params that will be used by the vector store to perform the vector seoxideh.
+    let seoxideh_params = SeoxidehParams::default();
+    let vector_store_index = LanceDbVectorIndex::new(table, model, "id", seoxideh_params)
         .await
         .unwrap();
 
